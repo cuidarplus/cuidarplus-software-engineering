@@ -9,6 +9,8 @@
 | D5 | Stack tecnológica | React + TypeScript (PWA) · Java LTS + Spring Boot + Spring Modulith · PostgreSQL + PostGIS (Spring Data JPA + Hibernate Spatial) · eventos de domínio com registro de publicação (outbox) · armazenamento de objetos S3-compatível | 11/11/2026 | docs/02 e docs/03.3 |
 | D6 | Aplicação da Clean por módulo | Completa em ocorrencias; priorizacao só com domínio (cálculo puro, D7); enxuta em administracao e identidade; notificacoes reativa a eventos | 11/11/2026 | docs/02 e docs/03.2 |
 | D7 | Fronteiras entre módulos | priorizacao é cálculo puro sem dependências; ocorrencias é dona de Apoio, da pontuação gravada e do recálculo agendado; administracao é dona de Categoria e AreaAtuacao; notificacoes reage a eventos | 11/11/2026 | docs/03.2 e docs/03.3 |
+| D8 | Duplicidade e upload | Consulta de duplicidade prévia e não bloqueante (A3); upload de foto direto ao armazenamento por URL temporária emitida pela API | 11/11/2026 | docs/03.3 e docs/04 |
+| D9 | Emissão de tokens | gov.br autentica via OIDC; identidade emite JWT próprio (15 min, com papéis) e refresh token | 11/11/2026 | docs/03.3 e docs/04 |
 
 ## Justificativa resumida da stack (D5)
 
@@ -29,6 +31,7 @@ entre elas – mais código, em troca da independência de framework exigida pel
 - Cobertura: ≥ 80% em domínio e aplicação
 - Usabilidade: WCAG 2.1 AA; registro em até 3 passos; até 3 fotos por ocorrência
 - Segurança: token de acesso com validade de 15 minutos, renovado por refresh token (RNF02)
+- Notificação: envio inicial + 5 novas tentativas, com espera crescente de 1, 2, 4, 8 e 16 min antes de cada uma; depois, sinalização para tratamento manual (RF06)
 
 ## Integrantes
 - José Ribeiro dos Santos Neto – RM 567692
