@@ -1,0 +1,7 @@
+referencias/
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
