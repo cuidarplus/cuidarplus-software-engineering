@@ -7,7 +7,7 @@ Use este guia para escrever E para revisar. Se uma seção não passa na autorre
 | Círculo | Conteúdo neste projeto |
 |---|---|
 | Entidades | Ocorrencia (regra de transição de status, invariantes), Categoria (peso de risco), Apoio; serviço de domínio PoliticaDePriorizacao |
-| Casos de uso | RegistrarOcorrencia, AtualizarSituacao, PriorizarDemanda, EncerrarSolicitacao, ApoiarOcorrencia, ConsultarPainel |
+| Casos de uso | RegistrarOcorrencia, AcompanharOcorrencia, AtualizarSituacao, PriorizarDemanda, EncerrarSolicitacao, ApoiarOcorrencia, ConsultarPainel |
 | Adaptadores de interface | Controllers REST, DTOs/presenters, implementações de repositório (JPA) e gateways |
 | Frameworks e drivers | Spring Boot (Spring Web, Spring Security, Spring Data JPA, Spring Modulith), PostgreSQL/PostGIS, armazenamento de objetos, provedor gov.br, serviço de e-mail/push |
 
