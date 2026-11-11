@@ -4,7 +4,7 @@ Esta seção define a abordagem arquitetural do Neighborhood Action Dashboard e 
 
 ## 2.1 Abordagem escolhida
 
-Escolhemos a **Clean Architecture** (MARTIN, 2019). O sistema é implantado como um monólito modular (ADR-001). A Clean completa se aplica aos módulos `ocorrencias` e `priorizacao`, onde está o domínio. Os módulos `administracao` e `identidade` usam uma versão enxuta (caso de uso fino, sem entidades ricas), e `notificacoes` reage a eventos de domínio.
+Escolhemos a **Clean Architecture** (MARTIN, 2019). O sistema é implantado como um monólito modular (ADR-001). A Clean completa se aplica ao módulo `ocorrencias`, onde está o domínio. O módulo `priorizacao` contém apenas domínio (cálculo puro, sem portas nem adaptadores). Os módulos `administracao` e `identidade` usam uma versão enxuta (caso de uso fino, sem entidades ricas), e `notificacoes` é reativo: responde a eventos de domínio.
 
 | Abordagem | Escolha | Resumo |
 |---|---|---|
@@ -15,7 +15,7 @@ Escolhemos a **Clean Architecture** (MARTIN, 2019). O sistema é implantado como
 
 ## 2.2 Círculos aplicados ao domínio
 
-Os círculos abaixo valem por inteiro para os módulos `ocorrencias` e `priorizacao`. Em `administracao` e `identidade` a versão é enxuta (caso de uso fino, sem entidades ricas), e `notificacoes` reage a eventos de domínio com um listener assíncrono. A seta indica "depende de".
+Os círculos abaixo valem por inteiro para o módulo `ocorrencias`. O módulo `priorizacao` contém apenas domínio (cálculo puro, sem portas nem adaptadores). Em `administracao` e `identidade` a versão é enxuta (caso de uso fino, sem entidades ricas), e `notificacoes` é reativo: responde a eventos de domínio com um listener assíncrono. A seta indica "depende de".
 
 ```mermaid
 flowchart TB
@@ -57,7 +57,7 @@ Regra de decisão para validações: o que depende só do formato do dado fica n
 | RegistrarOcorrencia (RF01) | GeocodificacaoGateway | Gateway para o serviço de mapas e geocodificação |
 | RegistrarOcorrencia (RF01) | ArmazenamentoDeArquivos | Gateway para o armazenamento de objetos |
 | AtualizarSituacao (RF03, RF06) | Notificador | Publicação de evento de domínio com registro de publicação (outbox); o listener assíncrono envia o e-mail ou push |
-| PriorizarDemanda (RF04) | Relogio | Relógio do sistema; nos testes, um relógio fixo para validar o "tempo em aberto" |
+| PriorizarDemanda em `ocorrencias` (RF04) | Relogio | Relógio do sistema; o caso de uso passa o instante a `priorizacao`. Nos testes, um relógio fixo para validar o "tempo em aberto" |
 
 Duas consequências práticas:
 - As regras de RF03 e RF04 rodam em testes unitários sem Spring e sem banco.

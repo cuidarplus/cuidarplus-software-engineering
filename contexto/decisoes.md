@@ -7,7 +7,8 @@
 | D3 | Fluxo crítico | Registrar ocorrência (RF01) | 11/11/2026 | docs/04 |
 | D4 | ADR-001 | Monólito modular | 11/11/2026 | docs/05-adr |
 | D5 | Stack tecnológica | React + TypeScript (PWA) · Java LTS + Spring Boot + Spring Modulith · PostgreSQL + PostGIS (Spring Data JPA + Hibernate Spatial) · eventos de domínio com registro de publicação (outbox) · armazenamento de objetos S3-compatível | 11/11/2026 | docs/02 e docs/03.3 |
-| D6 | Aplicação da Clean por módulo | Completa em ocorrencias e priorizacao; enxuta (caso de uso fino) em administracao e identidade; notificacoes reage a eventos | 11/11/2026 | docs/02 e docs/03.2 |
+| D6 | Aplicação da Clean por módulo | Completa em ocorrencias; priorizacao só com domínio (cálculo puro, D7); enxuta em administracao e identidade; notificacoes reativa a eventos | 11/11/2026 | docs/02 e docs/03.2 |
+| D7 | Fronteiras entre módulos | priorizacao é cálculo puro sem dependências; ocorrencias é dona de Apoio, da pontuação gravada e do recálculo agendado; administracao é dona de Categoria e AreaAtuacao; notificacoes reage a eventos | 11/11/2026 | docs/03.2 e docs/03.3 |
 
 ## Justificativa resumida da stack (D5)
 
