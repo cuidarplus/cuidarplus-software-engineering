@@ -20,7 +20,7 @@
 | Back-end | Java LTS + Spring Boot + Spring Modulith | Ecossistema maduro para APIs REST; Spring Security cobre OAuth2/OIDC + JWT + RBAC (RNF02); Modulith verifica fronteiras dos módulos do monólito (ADR-001) | NestJS: sem verificador nativo de fronteiras de módulo e ecossistema de segurança menos consolidado |
 | Persistência | PostgreSQL + PostGIS via Spring Data JPA + Hibernate Spatial | Consultas por raio/bairro (RF05, RF08), ACID, versionamento otimista | MongoDB: integridade relacional mais fraca |
 | Notificações | Eventos de domínio + registro de publicação (outbox) + listener assíncrono | Falha no envio não bloqueia a mudança de status (RF06); sem broker (KISS) | RabbitMQ/Kafka: sobreengenharia para o RNF01 |
-| Arquivos | Armazenamento de objetos S3-compatível | Fotos fora do banco (RNF04) | Binário no banco |
+| Arquivos | Armazenamento de objetos S3-compatível | Fotos fora do banco (backup menor e restauração dentro do RTO – RNF04) | Binário no banco |
 
 Limitação assumida: entidades de domínio são classes Java puras, separadas das entidades JPA, com mapper
 entre elas – mais código, em troca da independência de framework exigida pelo RNF06.
