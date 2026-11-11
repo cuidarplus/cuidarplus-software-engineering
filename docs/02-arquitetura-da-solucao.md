@@ -23,7 +23,7 @@ flowchart TB
         subgraph ad["Adaptadores de interface"]
             subgraph uc["Casos de uso"]
                 subgraph en["Entidades"]
-                    Dominio["Ocorrencia, Categoria, Apoio<br/>PoliticaDePriorizacao"]
+                    Dominio["Ocorrencia, Localizacao, Anexo<br/>HistoricoStatus, Apoio"]
                 end
                 Casos["RegistrarOcorrencia, AtualizarSituacao<br/>PriorizarDemanda, ApoiarOcorrencia<br/>Portas de saída"]
             end
@@ -38,7 +38,7 @@ flowchart TB
 
 | Círculo | Conteúdo neste projeto | Onde ficam as regras principais |
 |---|---|---|
-| Entidades | Ocorrencia, Categoria, Apoio, HistoricoStatus e o serviço de domínio PoliticaDePriorizacao. São classes Java puras, sem anotações de framework. | **RF03:** a Ocorrencia conhece as transições válidas do ciclo de status e exige justificativa. **RF04:** a PoliticaDePriorizacao calcula a pontuação (peso de risco da categoria + número de apoios + tempo em aberto). |
+| Entidades | No módulo `ocorrencias`: Ocorrencia, Localizacao, Anexo, HistoricoStatus e Apoio. São classes Java puras, sem anotações de framework. Fora deste módulo (D6, D7): o serviço de domínio PoliticaDePriorizacao pertence a `priorizacao` (cálculo puro) e a Categoria pertence a `administracao`. | **RF03:** a Ocorrencia conhece as transições válidas do ciclo de status e exige justificativa. **RF04:** a PoliticaDePriorizacao, em `priorizacao`, calcula a pontuação (peso de risco da categoria + número de apoios + tempo em aberto) a partir de valores entregues pelo caso de uso. |
 | Casos de uso | RegistrarOcorrencia, AcompanharOcorrencia, AtualizarSituacao, PriorizarDemanda, EncerrarSolicitacao, ApoiarOcorrencia e ConsultarPainel. Declaram as portas de saída: OcorrenciaRepository, GeocodificacaoGateway, ArmazenamentoDeArquivos, Notificador e Relogio. | **RF01:** o caso de uso orquestra o registro, aplica a regra de até 3 fotos e confere categoria e localização. Cada caso de uso é uma transação de negócio. |
 | Adaptadores de interface | Controllers REST, DTOs e presenters, repositório JPA com entidades JPA próprias e mapper domínio ↔ JPA, gateways para os serviços externos. | **RF01:** formato e obrigatoriedade dos campos são validados no DTO (Bean Validation). A autorização por papel é verificada na entrada da API. |
 | Frameworks e drivers | Spring Boot (Web, Security, Data JPA, Modulith), PostgreSQL com PostGIS, armazenamento de objetos S3-compatível, gov.br (OAuth2/OIDC), serviço de mapas e geocodificação, serviço de e-mail e push. | Nenhuma regra de negócio. Só configuração e montagem das peças. |

@@ -19,6 +19,8 @@ A base grande é possível por causa da Clean Architecture (MARTIN, 2019): entid
 
 **Teste de carga (RNF01):** fora da pirâmide, porque mede desempenho e não comportamento. É feito de forma pontual antes da entrega, com 100 requisições por segundo, conferindo p95 ≤ 200 ms. Também dimensiona o pool de conexões descrito na [Visão de Processo](./03-visoes-4mais1/03.3-visao-processo.md).
 
+**Ensaio de restauração do backup (RNF04):** também fora da pirâmide. Restaurar a cópia diária em ambiente isolado e conferir RTO ≤ 4 h.
+
 ## 6.2 Testes unitários
 
 Rodam sem Spring e sem banco, em milissegundos. O tempo vem do Relogio (porta), sempre fixo no teste.
@@ -31,6 +33,7 @@ Rodam sem Spring e sem banco, em milissegundos. O tempo vem do Relogio (porta), 
 | U3 | Registro com 4 Anexos | A Ocorrencia é criada | A invariante de no máximo 3 anexos é violada e a criação é rejeitada | RF01 |
 | U4 | Localizacao fora da AreaAtuacao informada | A Ocorrencia é criada | A invariante de localização é violada e a criação é rejeitada | RF01 |
 | U5 | Cidadão que já apoiou a Ocorrencia | O mesmo cidadão apoia de novo | O segundo Apoio é rejeitado e o total de apoios não muda | RF08 |
+| U6 | Dados de registro sem categoria ou sem descrição | O DTO de registro é validado | O registro é recusado com um erro por campo ausente e nenhuma Ocorrencia é criada | RF01 |
 
 ## 6.3 Testes de integração
 
@@ -42,7 +45,8 @@ Sobem a aplicação com PostgreSQL + PostGIS reais em contêiner descartável. N
 | I2 | Gestor muda o status | HistoricoStatus e evento de domínio gravados na mesma transação. Em caso de rollback, nenhum dos dois existe | RF06, RF03 |
 | I3 | Dois gestores alteram a mesma Ocorrencia a partir da mesma versão lida | A primeira gravação vale. A segunda recebe conflito e o status da primeira é preservado | RF03 |
 | I4 | Verificação de estrutura do Spring Modulith | Sem ciclos, sem uso de subpacotes internos de outro módulo e `priorizacao` sem dependências (D7) | RNF06 |
-| I5 | Cidadão autenticado tenta alterar o status de uma Ocorrencia. Em outro teste, tenta ver os dados pessoais de uma Ocorrencia de outro solicitante | A alteração de status devolve 403. A consulta aos dados pessoais é recusada pela regra de posse | RNF02, RF02 |
+| I5 | Cidadão autenticado tenta alterar o status de uma Ocorrencia. Em outro teste, tenta ver os dados pessoais de uma Ocorrencia de outro solicitante. Em um terceiro, usuário sem papel Administrador tenta gerenciar categorias | A alteração de status devolve 403. A consulta aos dados pessoais é recusada pela regra de posse. O gerenciamento de categorias devolve 403 | RNF02, RF02, RF07 |
+| I6 | Gestor consulta o painel com filtros combináveis (bairro, categoria, status, prioridade e período) | A resposta traz só Ocorrencias da área do gestor que atendem a todos os filtros, e nenhum dado pessoal do solicitante | RF05, RNF03 |
 
 ## 6.4 Testes end-to-end (E2E)
 
@@ -62,12 +66,12 @@ A verificação de WCAG e dos 3 passos cumpre o que a [seção 3.2.4](./03-visoe
 | # | Critério | Evidência | Feito |
 |---|---|---|---|
 | 1 | Requisito e critérios de aceite validados | Critérios de aceite do requisito (seção 1.5) conferidos pelos dois integrantes. Ex.: RF03 só aceita transições válidas, coberto por U1 e E1 | [ ] |
-| 2 | Testes unitários aprovados | Relatório do JUnit sem falhas, incluindo U1 a U5, e cobertura ≥ 80% em domínio e aplicação | [ ] |
-| 3 | Testes de integração aprovados | I1 a I5 aprovados contra o PostgreSQL real. Ex.: I3 comprova o conflito de versão | [ ] |
+| 2 | Testes unitários aprovados | Relatório do JUnit sem falhas, incluindo U1 a U6, e cobertura ≥ 80% em domínio e aplicação | [ ] |
+| 3 | Testes de integração aprovados | I1 a I6 aprovados contra o PostgreSQL real. Ex.: I3 comprova o conflito de versão. Ensaio de restauração do backup concluído com RTO ≤ 4 h (RNF04) | [ ] |
 | 4 | Fluxo principal em E2E | Relatório do Playwright com E1 aprovado, do registro ao encerramento | [ ] |
 | 5 | Código revisado por outro integrante | Pull request aprovado pelo outro integrante antes do merge | [ ] |
 | 6 | Decisão em ADR quando aplicável | ADR registrado em `docs/05-adr`. Ex.: extrair um módulo do monólito exigiria rever o ADR-001. Se não houver decisão nova, registrar "não se aplica" | [ ] |
 | 7 | Sem defeitos críticos abertos | Lista de issues sem nenhum defeito crítico aberto | [ ] |
 | 8 | Documentação atualizada | Seções de `docs/` e `contexto/rastreabilidade.md` atualizadas no mesmo pull request | [ ] |
 
-**Requisitos atendidos:** RF01, RF02, RF03, RF04, RF06, RF08, RNF01, RNF02, RNF05, RNF06
+**Requisitos atendidos:** RF01, RF02, RF03, RF04, RF05, RF06, RF07, RF08, RNF01, RNF02, RNF03, RNF04, RNF05, RNF06

@@ -1,4 +1,4 @@
-# Referências
+# 7. Referências
 
 BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dados Pessoais (LGPD).
 Diário Oficial da União, Brasília, DF, 15 ago. 2018.

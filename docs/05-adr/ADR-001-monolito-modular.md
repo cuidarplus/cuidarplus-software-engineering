@@ -1,4 +1,4 @@
-# ADR-001: Adoção de monolito modular
+# 5. ADR-001 – Monólito modular
 
 Esta seção registra a decisão de como o back-end do Neighborhood Action Dashboard é dividido e implantado. Ela sustenta a [abordagem arquitetural](../02-arquitetura-da-solucao.md) e as [visões 4+1](../03-visoes-4mais1/03.2-visao-desenvolvimento.md), e segue o formato de Nygard (2011).
 

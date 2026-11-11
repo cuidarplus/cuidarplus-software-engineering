@@ -176,4 +176,4 @@ Cada ramo tem uma condição de guarda e um desfecho claro. Os desfechos seguem 
 | [Processo](./03-visoes-4mais1/03.3-visao-processo.md) | Consulta de duplicidade não bloqueante e upload por URL temporária (D8), tokens (D9), transação única com o evento e entrega assíncrona. O diagrama os traduz em mensagens numeradas. |
 | [Cenário +1](./03-visoes-4mais1/03.4-cenario-mais1.md) | O mesmo caso de uso, visto pelo que cada visão contribui. |
 
-**Requisitos atendidos:** RF01, RF06, RF08, RNF01, RNF02, RNF03, RNF05
+**Requisitos atendidos:** RF01, RF04, RF06, RF08, RNF01, RNF02, RNF03, RNF05
