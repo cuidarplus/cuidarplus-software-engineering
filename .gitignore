@@ -5,3 +5,8 @@ Thumbs.db
 .vscode/
 .idea/
 *.tmp
+
+# Copilot (instruções e prompts locais)
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
