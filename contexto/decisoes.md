@@ -26,6 +26,7 @@ entre elas – mais código, em troca da independência de framework exigida pel
 - Disponibilidade: 99,5% mensal; RPO ≤ 24 h; RTO ≤ 4 h
 - Cobertura: ≥ 80% em domínio e aplicação
 - Usabilidade: WCAG 2.1 AA; registro em até 3 passos; até 3 fotos por ocorrência
+- Segurança: token de acesso com validade de 15 minutos, renovado por refresh token (RNF02)
 
 ## Integrantes
 - José Ribeiro dos Santos Neto – RM 567692
