@@ -140,7 +140,7 @@ sequenceDiagram
     else A5 transação não confirmada
         BD-->>Repo: erro na confirmação
         Repo-->>Caso: erro de persistência
-        Note over Caso,PWA: Resposta 500 e nada é gravado. A PWA permite tentar de novo
+        Note over Caso,PWA: Resposta 503 (indisponibilidade) e nada é gravado. A PWA permite tentar de novo
     end
 ```
 

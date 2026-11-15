@@ -2,7 +2,7 @@
 
 Legenda: ✅ coberto · ⏳ previsto · – não se aplica
 
-Baseada nas linhas "Requisitos atendidos" de cada seção (checklist final, 11/11/2026).
+Baseada nas linhas "Requisitos atendidos" de cada seção (checklist final, 15/11/2026).
 
 | Req. | Arquitetura (02) | Visão Lógica | Desenvolvimento | Processo | Cenário +1 | Sequência | ADR-001 | Testes |
 |---|---|---|---|---|---|---|---|---|

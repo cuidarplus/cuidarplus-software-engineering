@@ -4,7 +4,7 @@ BRASIL. Lei nº 13.709, de 14 de agosto de 2018. Lei Geral de Proteção de Dado
 Diário Oficial da União, Brasília, DF, 15 ago. 2018.
 
 COCKBURN, Alistair. Hexagonal architecture. 2005. Disponível em:
-https://alistair.cockburn.us/hexagonal-architecture/. Acesso em: [DATA].
+https://alistaircockburn.com/Articles/Hexagonal-Architecture. Acesso em: [DATA].
 
 COHN, Mike. Succeeding with Agile: software development using Scrum. Boston: Addison-Wesley, 2009.
 
